@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PuzzleViewController.h
 //  Puzzle
 //
 //  Created by Smbat Tumasyan on 3/10/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface PuzzleViewController : UIViewController
 
 @end
-
