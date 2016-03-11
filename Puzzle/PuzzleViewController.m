@@ -99,7 +99,7 @@
     UITouch *touch = [[event allTouches] anyObject];
     if([touch view] == self.eightImage)
     {
-        NSLog(@"%@",[self findImagePlace:self.eightImage]);
+        NSLog(@"place%@",[self findImagePlace:self.eightImage]);
     }
     
     NSLog(@"touch!");
@@ -184,7 +184,6 @@
 
 - (void)setupPlaces
 {
-    
     self.firstPlace   = [[NSPoint alloc] initWithPoint:CGPointMake(50, 50)];
     self.secondPlace  = [[NSPoint alloc] initWithPoint:CGPointMake(150, 50)];
     self.thirdPlace   = [[NSPoint alloc] initWithPoint:CGPointMake(250, 50)];
