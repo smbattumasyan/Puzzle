@@ -109,7 +109,7 @@
 //    self.ninthImage = [self createImage:[UIImage imageNamed:@"image"] frame:CGRectMake(self.firstImage.bounds.size.width*2, self.firstImage.bounds.size.height*2, 100, 100)];
 //    [self.deskView addSubview:self.ninthImage];
 }
-
+//
 //- (void)setupImagePicker
 //{
 //    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
