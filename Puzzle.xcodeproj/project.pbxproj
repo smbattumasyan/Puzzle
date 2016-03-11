@@ -16,6 +16,7 @@
 		80B1F5531C9197AC00EBB1CC /* PuzzleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B1F5521C9197AC00EBB1CC /* PuzzleTests.m */; };
 		80B1F55E1C9197AC00EBB1CC /* PuzzleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B1F55D1C9197AC00EBB1CC /* PuzzleUITests.m */; };
 		80B1F56E1C91995B00EBB1CC /* PuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B1F56D1C91995B00EBB1CC /* PuzzleViewController.m */; };
+		80B1F5701C929ACC00EBB1CC /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80B1F56F1C929ACC00EBB1CC /* image1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		80B1F55F1C9197AC00EBB1CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80B1F56C1C91995B00EBB1CC /* PuzzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleViewController.h; sourceTree = "<group>"; };
 		80B1F56D1C91995B00EBB1CC /* PuzzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleViewController.m; sourceTree = "<group>"; };
+		80B1F56F1C929ACC00EBB1CC /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				80B1F5491C9197AB00EBB1CC /* Info.plist */,
 				80B1F5411C9197AB00EBB1CC /* Puzzle.xcdatamodeld */,
 				80B1F5361C9197AB00EBB1CC /* main.m */,
+				80B1F56F1C929ACC00EBB1CC /* image1.jpg */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80B1F5481C9197AB00EBB1CC /* LaunchScreen.storyboard in Resources */,
+				80B1F5701C929ACC00EBB1CC /* image1.jpg in Resources */,
 				80B1F5451C9197AB00EBB1CC /* Assets.xcassets in Resources */,
 				80B1F5401C9197AB00EBB1CC /* Main.storyboard in Resources */,
 			);
