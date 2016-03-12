@@ -97,9 +97,23 @@
 {
 
     UITouch *touch = [[event allTouches] anyObject];
-    if([touch view] == self.eightImage)
+    if([touch view] == self.firstImage)
     {
-        NSLog(@"place%@",[self findImagePlace:self.eightImage]);
+        [self moveImage:self.firstImage];
+    } else if ([touch view] == self.secondImage) {
+        [self moveImage:self.secondImage];
+    }else if ([touch view] == self.thirdImage) {
+        [self moveImage:self.thirdImage];
+    }else if ([touch view] == self.fourthImage) {
+        [self moveImage:self.fourthImage];
+    }else if ([touch view] == self.fifthImage) {
+        [self moveImage:self.fifthImage];
+    }else if ([touch view] == self.sixthImage) {
+        [self moveImage:self.sixthImage];
+    }else if ([touch view] == self.seventhImage) {
+        [self moveImage:self.seventhImage];
+    }else if ([touch view] == self.eightImage) {
+        [self moveImage:self.eightImage];
     }
     
     NSLog(@"touch!");
@@ -116,7 +130,111 @@
 #pragma mark - Privete Methods
 //------------------------------------------------------------------------------------------
 
-- (NSPoint *)findImagePlace:(UIImageView *)imageView
+- (void)moveImage:(UIImageView *)imageView
+{
+    //first
+    if ([[self ImagePlace:imageView] isEqual:self.firstPlace.point]) {
+        if ([self.freePlace isEqual:self.secondPlace.point]) {
+            imageView.center = self.secondPlace.point;
+            self.freePlace   = self.firstPlace;
+        } else if ([self.freePlace isEqual:self.fourthPlace.point]) {
+            imageView.center = self.fourthPlace.point;
+            self.freePlace   = self.firstPlace;
+        }
+        //third
+    } else if ([[self ImagePlace:imageView] isEqual:self.thirdPlace.point]) {
+        if ([self.freePlace isEqual:self.secondPlace.point]) {
+            imageView.center = self.secondPlace.point;
+            self.freePlace   = self.thirdPlace;
+        } else if ([self.freePlace isEqual:self.sixthPlace.point]) {
+            imageView.center = self.sixthPlace.point;
+            self.freePlace   = self.thirdPlace;
+        }
+        //seven
+    } else if ([[self ImagePlace:imageView] isEqual:self.seventhPlace.point]) {
+        if ([self.freePlace isEqual:self.eightPlace.point]) {
+            imageView.center = self.eightPlace.point;
+            self.freePlace   = self.seventhPlace;
+        } else if ([self.freePlace isEqual:self.fourthPlace.point]) {
+            imageView.center = self.fourthPlace.point;
+            self.freePlace   = self.seventhPlace;
+        }
+        //ninth
+    } else if ([[self ImagePlace:imageView] isEqual:self.ninthPlace.point]) {
+        if ([self.freePlace isEqual:self.eightPlace.point]) {
+            imageView.center = self.eightPlace.point;
+            self.freePlace   = self.ninthPlace;
+        } else if ([self.freePlace isEqual:self.sixthPlace.point]) {
+            imageView.center = self.sixthPlace.point;
+            self.freePlace   = self.ninthPlace;
+        }
+        //second
+    } else if ([[self ImagePlace:imageView] isEqual:self.secondPlace.point]) {
+        if ([self.freePlace isEqual:self.firstPlace.point]) {
+            imageView.center = self.firstPlace.point;
+            self.freePlace   = self.secondPlace;
+        } else if ([self.freePlace isEqual:self.thirdPlace.point]) {
+            imageView.center = self.thirdPlace.point;
+            self.freePlace   = self.secondPlace;
+        } else if ([self.freePlace isEqual:self.fifthPlace.point]) {
+            imageView.center = self.fifthPlace.point;
+            self.freePlace   = self.secondPlace;
+        }
+        //fourth
+    } else if ([[self ImagePlace:imageView] isEqual:self.fourthPlace.point]) {
+        if ([self.freePlace isEqual:self.firstPlace.point]) {
+            imageView.center = self.firstPlace.point;
+            self.freePlace   = self.fourthPlace;
+        } else if ([self.freePlace isEqual:self.seventhPlace.point]) {
+            imageView.center = self.seventhPlace.point;
+            self.freePlace   = self.fourthPlace;
+        } else if ([self.freePlace isEqual:self.fifthPlace.point]) {
+            imageView.center = self.fifthPlace.point;
+            self.freePlace   = self.fourthPlace;
+        }
+        //sixth
+    } else if ([[self ImagePlace:imageView] isEqual:self.sixthPlace.point]) {
+        if ([self.freePlace isEqual:self.ninthPlace.point]) {
+            imageView.center = self.ninthPlace.point;
+            self.freePlace   = self.sixthPlace;
+        } else if ([self.freePlace isEqual:self.thirdPlace.point]) {
+            imageView.center = self.thirdPlace.point;
+            self.freePlace   = self.sixthPlace;
+        } else if ([self.freePlace isEqual:self.fifthPlace.point]) {
+            imageView.center = self.fifthPlace.point;
+            self.freePlace   = self.sixthPlace;
+        }
+        //eighth
+    } else if ([[self ImagePlace:imageView] isEqual:self.eightPlace.point]) {
+        if ([self.freePlace isEqual:self.ninthPlace.point]) {
+            imageView.center = self.ninthPlace.point;
+            self.freePlace   = self.eightPlace;
+        } else if ([self.freePlace isEqual:self.seventhPlace.point]) {
+            imageView.center = self.seventhPlace.point;
+            self.freePlace   = self.eightPlace;
+        } else if ([self.freePlace isEqual:self.fifthPlace.point]) {
+            imageView.center = self.fifthPlace.point;
+            self.freePlace   = self.eightPlace;
+        }
+        //five
+    } else if ([[self ImagePlace:imageView] isEqual:self.fifthPlace.point]) {
+        if ([self.freePlace isEqual:self.secondPlace.point]) {
+            imageView.center = self.secondPlace.point;
+            self.freePlace   = self.fifthPlace;
+        } else if ([self.freePlace isEqual:self.eightPlace.point]) {
+            imageView.center = self.eightPlace.point;
+            self.freePlace   = self.fifthPlace;
+        } else if ([self.freePlace isEqual:self.fourthPlace.point]) {
+            imageView.center = self.fourthPlace.point;
+            self.freePlace   = self.fifthPlace;
+        } else if ([self.freePlace isEqual:self.sixthPlace.point]) {
+            imageView.center = self.sixthPlace.point;
+            self.freePlace   = self.fifthPlace;
+        }
+    }
+}
+
+- (NSPoint *)ImagePlace:(UIImageView *)imageView
 {
     if ([self.firstPlace isEqual:imageView.center]) {
         return self.firstPlace;
@@ -173,13 +291,14 @@
     self.seventhImage = [self createImage:[UIImage imageNamed:@"image"] point:self.seventhPlace.point];
     [self.deskView addSubview:self.seventhImage];
 
-    self.eightImage   = [self createImage:[UIImage imageNamed:@"image"] point:self.eightPlace.point];
+    self.eightImage   = [self createImage:[UIImage imageNamed:@"image"] point:self.ninthPlace.point];
     [self.deskView addSubview:self.eightImage];
 
 //    self.ninthImage   = [self createImage:[UIImage imageNamed:@"image"] point:self.ninthPlace];
 //    [self.deskView addSubview:self.ninthImage];
   
-    self.freePlace = [[NSPoint alloc] initWithPoint:self.ninthPlace.point];
+    self.freePlace = [[NSPoint alloc] initWithPoint:self.eightPlace.point];
+    NSLog(@"%f",self.freePlace.point.x);
 }
 
 - (void)setupPlaces
