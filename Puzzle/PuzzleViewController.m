@@ -47,6 +47,7 @@
 
 @property (strong, nonatomic) NSPoint *freePlace;
 @property (strong, nonatomic) UIImage *cropImage;
+@property (weak, nonatomic) IBOutlet UIButton *openButton;
 
 
 @property (strong, nonatomic) UIImageView *firstImage;
@@ -82,7 +83,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    self.deskView.hidden = YES;
     [self setupPlaces];
 //    [self setupImageView];
 }
@@ -293,6 +294,7 @@
     return imageView;
 }
 
+
 - (void)setupImageView
 {
     self.firstImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 0, 100, 100)] point:self.firstPlace.point];
@@ -324,7 +326,6 @@
     self.freePlace = [[NSPoint alloc] initWithPoint:self.ninthPlace.point];
     
     [self.deskView addSubview:self.ninthImage];
-  
 }
 
 - (void)setupPlaces
@@ -390,6 +391,8 @@
     self.cropImage = image;
     
     [picker dismissViewControllerAnimated:YES completion:nil];
+    self.deskView.hidden = NO;
+    self.openButton.hidden = YES;
     [self setupImageView];
 }
 
