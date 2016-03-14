@@ -45,7 +45,8 @@
 
 @property (weak, nonatomic ) IBOutlet UIView      *deskView;
 
-@property (strong, nonatomic) NSPoint* freePlace;
+@property (strong, nonatomic) NSPoint *freePlace;
+@property (strong, nonatomic) UIImage *cropImage;
 
 
 @property (strong, nonatomic) UIImageView *firstImage;
@@ -83,7 +84,7 @@
     
     
     [self setupPlaces];
-    [self setupImageView];
+//    [self setupImageView];
 }
 
 
@@ -95,7 +96,6 @@
 //Handle touchesMoved
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-
     UITouch *touch = [[event allTouches] anyObject];
     if([touch view] == self.firstImage)
     {
@@ -124,6 +124,7 @@
 //------------------------------------------------------------------------------------------
 
 - (IBAction)openImageButton:(UIButton *)sender {
+    [self setupImagePicker];
 }
 
 //------------------------------------------------------------------------------------------
@@ -264,41 +265,66 @@
     imageView.userInteractionEnabled = YES;
     imageView.frame = CGRectMake(0, 0, 100, 100);
     imageView.center = point;
+    [imageView.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [imageView.layer setBorderWidth: 1.0];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(45, 45, 14, 14)];
+    if ([self.firstPlace isEqual:point]) {
+        label.text = @"1";
+    } else if ([self.secondPlace isEqual:point]) {
+        label.text = @"2";
+    } else if ([self.thirdPlace isEqual:point]) {
+        label.text = @"3";
+    } else if ([self.fourthPlace isEqual:point]) {
+        label.text = @"4";
+    } else if ([self.fifthPlace isEqual:point]) {
+        label.text = @"5";
+    } else if ([self.sixthPlace isEqual:point]) {
+        label.text = @"6";
+    } else if ([self.seventhPlace isEqual:point]) {
+        label.text = @"7";
+    } else if ([self.eightPlace isEqual:point]) {
+        label.text = @"8";
+    } else {
+        label.text = @"";
+    }
+    
+    
+    [imageView addSubview:label];
     return imageView;
 }
 
 - (void)setupImageView
 {
-   
-    self.firstImage   = [self createImage:[UIImage imageNamed:@"image"] point:self.firstPlace.point];
+    self.firstImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 0, 100, 100)] point:self.firstPlace.point];
     [self.deskView addSubview:self.firstImage];
     
-    self.secondImage  = [self createImage:[UIImage imageNamed:@"image"] point:self.secondPlace.point];
+    self.secondImage  = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(100, 0, 100, 100)] point:self.secondPlace.point];
     [self.deskView addSubview:self.secondImage];
 
-    self.thirdImage   = [self createImage:[UIImage imageNamed:@"image"] point:self.thirdPlace.point];
+    self.thirdImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(200, 0, 100, 100)] point:self.thirdPlace.point];
     [self.deskView addSubview:self.thirdImage];
 
-    self.fourthImage  = [self createImage:[UIImage imageNamed:@"image"] point:self.fourthPlace.point];
+    self.fourthImage  = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 100, 100, 100)] point:self.fourthPlace.point];
     [self.deskView addSubview:self.fourthImage];
 
-    self.fifthImage   = [self createImage:[UIImage imageNamed:@"image"] point:self.fifthPlace.point];
+    self.fifthImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(100, 100, 100, 100)] point:self.fifthPlace.point];
     [self.deskView addSubview:self.fifthImage];
 
-    self.sixthImage   = [self createImage:[UIImage imageNamed:@"image"] point:self.sixthPlace.point];
+    self.sixthImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(200, 100, 100, 100)] point:self.sixthPlace.point];
     [self.deskView addSubview:self.sixthImage];
 
-    self.seventhImage = [self createImage:[UIImage imageNamed:@"image"] point:self.seventhPlace.point];
+    self.seventhImage = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 200, 100, 100)] point:self.seventhPlace.point];
     [self.deskView addSubview:self.seventhImage];
 
-    self.eightImage   = [self createImage:[UIImage imageNamed:@"image"] point:self.ninthPlace.point];
+    self.eightImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(100, 200, 100, 100)] point:self.eightPlace.point];
     [self.deskView addSubview:self.eightImage];
 
-//    self.ninthImage   = [self createImage:[UIImage imageNamed:@"image"] point:self.ninthPlace];
-//    [self.deskView addSubview:self.ninthImage];
+//    self.ninthImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(200, 200, 100, 100)] point:self.ninthPlace.point imageNumber:@(9)];
+    
+    self.freePlace = [[NSPoint alloc] initWithPoint:self.ninthPlace.point];
+    
+    [self.deskView addSubview:self.ninthImage];
   
-    self.freePlace = [[NSPoint alloc] initWithPoint:self.eightPlace.point];
-    NSLog(@"%f",self.freePlace.point.x);
 }
 
 - (void)setupPlaces
@@ -314,26 +340,58 @@
     self.ninthPlace   = [[NSPoint alloc] initWithPoint:CGPointMake(250, 250)];
 }
 
-//
-//- (void)setupImagePicker
-//{
-//    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-//    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    imagePickerController.delegate = self;
-//    [self presentViewController:imagePickerController animated:YES completion:nil];
-//}
-//
-//// This method is called when an image has been chosen from the library or taken from the camera.
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-//{
-//    //You can retrieve the actual UIImage
-//    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-//    //Or you can get the image url from AssetsLibrary
+- (UIImage*) getSubImageFrom: (UIImage*) img WithRect: (CGRect) rect {
+    
+    img = [self imageWithImage:img scaledToSize:CGSizeMake(300, 300)];
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // translated rectangle for drawing sub image
+    CGRect drawRect = CGRectMake(-rect.origin.x, -rect.origin.y, img.size.width, img.size.height);
+    
+    // clip to the bounds of the image context
+    // not strictly necessary as it will get clipped anyway?
+    CGContextClipToRect(context, CGRectMake(0, 0, rect.size.width, rect.size.height));
+    
+    // draw image
+    [img drawInRect:drawRect];
+    
+    // grab image
+    UIImage* subImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return subImage;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+- (void)setupImagePicker
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePickerController.delegate = self;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+// This method is called when an image has been chosen from the library or taken from the camera.
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //You can retrieve the actual UIImage
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    //Or you can get the image url from AssetsLibrary
 //    NSURL *path = [info valueForKey:UIImagePickerControllerReferenceURL];
-//    
-//    
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//}
+
+    self.cropImage = image;
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self setupImageView];
+}
 
 /*
 #pragma mark - Navigation
