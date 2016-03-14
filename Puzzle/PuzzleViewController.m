@@ -137,7 +137,7 @@
     [UIView animateWithDuration:0.3f animations:^{       
     
     //first
-    if ([[self ImagePlace:imageView] isEqual:self.firstPlace.point]) {
+    if ([[self imagePlace:imageView] isEqual:self.firstPlace.point]) {
         if ([self.freePlace isEqual:self.secondPlace.point]) {
             imageView.center = self.secondPlace.point;
             self.freePlace   = self.firstPlace;
@@ -147,7 +147,7 @@
             self.freePlace   = self.firstPlace;
         }
         //third
-    } else if ([[self ImagePlace:imageView] isEqual:self.thirdPlace.point]) {
+    } else if ([[self imagePlace:imageView] isEqual:self.thirdPlace.point]) {
         if ([self.freePlace isEqual:self.secondPlace.point]) {
             imageView.center = self.secondPlace.point;
             self.freePlace   = self.thirdPlace;
@@ -156,7 +156,7 @@
             self.freePlace   = self.thirdPlace;
         }
         //seven
-    } else if ([[self ImagePlace:imageView] isEqual:self.seventhPlace.point]) {
+    } else if ([[self imagePlace:imageView] isEqual:self.seventhPlace.point]) {
         if ([self.freePlace isEqual:self.eightPlace.point]) {
             imageView.center = self.eightPlace.point;
             self.freePlace   = self.seventhPlace;
@@ -165,7 +165,7 @@
             self.freePlace   = self.seventhPlace;
         }
         //ninth
-    } else if ([[self ImagePlace:imageView] isEqual:self.ninthPlace.point]) {
+    } else if ([[self imagePlace:imageView] isEqual:self.ninthPlace.point]) {
         if ([self.freePlace isEqual:self.eightPlace.point]) {
             imageView.center = self.eightPlace.point;
             self.freePlace   = self.ninthPlace;
@@ -174,7 +174,7 @@
             self.freePlace   = self.ninthPlace;
         }
         //second
-    } else if ([[self ImagePlace:imageView] isEqual:self.secondPlace.point]) {
+    } else if ([[self imagePlace:imageView] isEqual:self.secondPlace.point]) {
         if ([self.freePlace isEqual:self.firstPlace.point]) {
             imageView.center = self.firstPlace.point;
             self.freePlace   = self.secondPlace;
@@ -186,7 +186,7 @@
             self.freePlace   = self.secondPlace;
         }
         //fourth
-    } else if ([[self ImagePlace:imageView] isEqual:self.fourthPlace.point]) {
+    } else if ([[self imagePlace:imageView] isEqual:self.fourthPlace.point]) {
         if ([self.freePlace isEqual:self.firstPlace.point]) {
             imageView.center = self.firstPlace.point;
             self.freePlace   = self.fourthPlace;
@@ -198,7 +198,7 @@
             self.freePlace   = self.fourthPlace;
         }
         //sixth
-    } else if ([[self ImagePlace:imageView] isEqual:self.sixthPlace.point]) {
+    } else if ([[self imagePlace:imageView] isEqual:self.sixthPlace.point]) {
         if ([self.freePlace isEqual:self.ninthPlace.point]) {
             imageView.center = self.ninthPlace.point;
             self.freePlace   = self.sixthPlace;
@@ -210,7 +210,7 @@
             self.freePlace   = self.sixthPlace;
         }
         //eighth
-    } else if ([[self ImagePlace:imageView] isEqual:self.eightPlace.point]) {
+    } else if ([[self imagePlace:imageView] isEqual:self.eightPlace.point]) {
         if ([self.freePlace isEqual:self.ninthPlace.point]) {
             imageView.center = self.ninthPlace.point;
             self.freePlace   = self.eightPlace;
@@ -222,7 +222,7 @@
             self.freePlace   = self.eightPlace;
         }
         //five
-    } else if ([[self ImagePlace:imageView] isEqual:self.fifthPlace.point]) {
+    } else if ([[self imagePlace:imageView] isEqual:self.fifthPlace.point]) {
         if ([self.freePlace isEqual:self.secondPlace.point]) {
             imageView.center = self.secondPlace.point;
             self.freePlace   = self.fifthPlace;
@@ -241,7 +241,7 @@
         }];
 }
 
-- (NSPoint *)ImagePlace:(UIImageView *)imageView
+- (NSPoint *)imagePlace:(UIImageView *)imageView
 {
     if ([self.firstPlace isEqual:imageView.center]) {
         return self.firstPlace;
@@ -265,30 +265,30 @@
     return self.freePlace;
 }
 
-- (UIImageView *)createImage:(UIImage *)image point:(CGPoint)point
+- (UIImageView *)createImage:(UIImage *)image point:(NSPoint *)place
 {
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.userInteractionEnabled = YES;
     imageView.frame = CGRectMake(0, 0, 100, 100);
-    imageView.center = point;
+    imageView.center = place.point;
     [imageView.layer setBorderColor:[[UIColor blackColor] CGColor]];
     [imageView.layer setBorderWidth: 1.0];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(45, 45, 14, 14)];
-    if ([self.firstPlace isEqual:point]) {
+    if ([self.firstPlace isEqual:place.point]) {
         label.text = @"1";
-    } else if ([self.secondPlace isEqual:point]) {
+    } else if ([self.secondPlace isEqual:place.point]) {
         label.text = @"2";
-    } else if ([self.thirdPlace isEqual:point]) {
+    } else if ([self.thirdPlace isEqual:place.point]) {
         label.text = @"3";
-    } else if ([self.fourthPlace isEqual:point]) {
+    } else if ([self.fourthPlace isEqual:place.point]) {
         label.text = @"4";
-    } else if ([self.fifthPlace isEqual:point]) {
+    } else if ([self.fifthPlace isEqual:place.point]) {
         label.text = @"5";
-    } else if ([self.sixthPlace isEqual:point]) {
+    } else if ([self.sixthPlace isEqual:place.point]) {
         label.text = @"6";
-    } else if ([self.seventhPlace isEqual:point]) {
+    } else if ([self.seventhPlace isEqual:place.point]) {
         label.text = @"7";
-    } else if ([self.eightPlace isEqual:point]) {
+    } else if ([self.eightPlace isEqual:place.point]) {
         label.text = @"8";
     } else {
         label.text = @"";
@@ -302,35 +302,35 @@
 
 - (void)setupImageView
 {
-    self.firstImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 0, 100, 100)] point:self.firstPlace.point];
+    self.firstImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 0, 100, 100)] point:self.firstPlace];
     [self.deskView addSubview:self.firstImage];
     
-    self.secondImage  = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(100, 0, 100, 100)] point:self.secondPlace.point];
+    self.secondImage  = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(100, 0, 100, 100)] point:self.secondPlace];
     [self.deskView addSubview:self.secondImage];
 
-    self.thirdImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(200, 0, 100, 100)] point:self.thirdPlace.point];
+    self.thirdImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(200, 0, 100, 100)] point:self.thirdPlace];
     [self.deskView addSubview:self.thirdImage];
 
-    self.fourthImage  = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 100, 100, 100)] point:self.fourthPlace.point];
+    self.fourthImage  = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 100, 100, 100)] point:self.fourthPlace];
     [self.deskView addSubview:self.fourthImage];
 
-    self.fifthImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(100, 100, 100, 100)] point:self.fifthPlace.point];
+    self.fifthImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(100, 100, 100, 100)] point:self.fifthPlace];
     [self.deskView addSubview:self.fifthImage];
 
-    self.sixthImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(200, 100, 100, 100)] point:self.sixthPlace.point];
+    self.sixthImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(200, 100, 100, 100)] point:self.sixthPlace];
     [self.deskView addSubview:self.sixthImage];
 
-    self.seventhImage = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 200, 100, 100)] point:self.seventhPlace.point];
+    self.seventhImage = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(0, 200, 100, 100)] point:self.seventhPlace];
     [self.deskView addSubview:self.seventhImage];
 
-    self.eightImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(100, 200, 100, 100)] point:self.eightPlace.point];
+    self.eightImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(100, 200, 100, 100)] point:self.eightPlace];
     [self.deskView addSubview:self.eightImage];
 
 //    self.ninthImage   = [self createImage:[self getSubImageFrom:self.cropImage WithRect:CGRectMake(200, 200, 100, 100)] point:self.ninthPlace.point imageNumber:@(9)];
+     [self.deskView addSubview:self.ninthImage];
     
     self.freePlace = [[NSPoint alloc] initWithPoint:self.ninthPlace.point];
-    
-    [self.deskView addSubview:self.ninthImage];
+   
 }
 
 - (void)setupPlaces
