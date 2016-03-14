@@ -134,11 +134,14 @@
 
 - (void)moveImage:(UIImageView *)imageView
 {
+    [UIView animateWithDuration:0.3f animations:^{       
+    
     //first
     if ([[self ImagePlace:imageView] isEqual:self.firstPlace.point]) {
         if ([self.freePlace isEqual:self.secondPlace.point]) {
             imageView.center = self.secondPlace.point;
             self.freePlace   = self.firstPlace;
+            
         } else if ([self.freePlace isEqual:self.fourthPlace.point]) {
             imageView.center = self.fourthPlace.point;
             self.freePlace   = self.firstPlace;
@@ -234,6 +237,8 @@
             self.freePlace   = self.fifthPlace;
         }
     }
+        
+        }];
 }
 
 - (NSPoint *)ImagePlace:(UIImageView *)imageView
